@@ -23,7 +23,7 @@ class Cache {
     }
     public function writeCache($data,$userName){
         $getUrl=$this->setUrlByUserName($userName);
-        $this->checkFile($getUrl);
+        $this->checkFile($getUrl,$userName);
         $file = fopen( $getUrl, "wb" );
         foreach ($data as $item) {
             fwrite($file,$item."\n");
@@ -31,7 +31,7 @@ class Cache {
         fclose($file);
         return true;
     }
-    public function checkFile($getUrl){
+    public function checkFile($getUrl,$userName){
         $getUrl=$this->setUrlByUserName($userName);
         if(file_exists($getUrl)){
             return;
